@@ -1,0 +1,20 @@
+version: '2'
+services:
+  chromium:
+    image: ${DOCKER_REGISTRY}monstrenyatko/chromium
+    container_name: chromium
+    cap_add:
+      - SYS_ADMIN
+    environment:
+      - LOG_LEVEL=info
+      - DISPLAY_WIDTH=1600
+      - DISPLAY_HEIGHT=968
+      - CHROMIUM_PARAMS=--incognito
+    volumes:
+      - chromium-data:/data:rw
+    ports:
+      - "8080:5980"
+    shm_size: '128mb'
+    restart: unless-stopped
+volumes:
+  chromium-data:
