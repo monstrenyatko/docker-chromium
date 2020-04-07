@@ -13,6 +13,24 @@ RUN sed -i -e 's/v[[:digit:]]\..*\//edge\//g' /etc/apk/repositories && \
     rm -rf /root/.cache && mkdir -p /root/.cache && \
     rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/cache/distfiles/*
 
+# replace favicon
+COPY icon.svg /usr/share/novnc/app/images/icons/novnc-icon-sm.svg
+COPY icon.svg /usr/share/novnc/app/images/icons/novnc-icon.svg
+RUN buildDeps='make imagemagick';SHELL=/bin/bash; \
+    # novnc makefile syntax requires bash => make bash temporary the default shell
+    mv /bin/sh /bin/sh.bkp && \
+    ln -s /bin/bash /bin/sh && \
+    apk update && \
+    apk add $buildDeps && \
+    cd /usr/share/novnc/app/images/icons/ && \
+    make && \
+    rm /bin/sh && \
+    mv /bin/sh.bkp /bin/sh && \
+    # clean-up
+    apk del $buildDeps && \
+    rm -rf /root/.cache && mkdir -p /root/.cache && \
+    rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/cache/distfiles/*
+
 ENV SYS_USERNAME="daemon" \
     SYS_GROUPNAME="daemon" \
     APP_USERNAME="chromium" \
