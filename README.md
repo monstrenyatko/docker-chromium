@@ -71,6 +71,8 @@ Container can be configured using environment variables:
 * `WEBSOCKIFY_PARAMS`: [**OPTIONAL**] the extra command-line parameters to be passed to the `websockify`
 * `CHROMIUM_PARAMS`: [**OPTIONAL**] the extra command-line parameters to be passed to the `Chromium`
 * `LOG_LEVEL`: [**OPTIONAL**] the `supervisord` logging level. Set to `debug` to see services output
+* `NET_GW`: [**OPTIONAL**] the network default GW to be used instead of one assigned by `Docker`.
+  This option requires `--cap-add=NET_ADMIN`
 
 
 Build own image

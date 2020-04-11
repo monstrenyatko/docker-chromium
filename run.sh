@@ -38,7 +38,7 @@ update_user_uid () {
     _USERNAME=$1
     _UID=$2
     #
-    if [ -n "$_UID" ] && [ "$_UID" !=  "$(id $_USERNAME -u)" ]; then
+    if [ -n "$_UID" ] && [ "$_UID" != "$(id $_USERNAME -u)" ]; then
         set +e
         # delete all users using requested UID
         cut -d: -f1,3 /etc/passwd | grep -w $_UID |
@@ -61,5 +61,10 @@ update_user_uid $APP_USERNAME $APP_UID
 chown -R $APP_USERNAME $APP_USERHOME
 
 export HOME=$APP_USERHOME
+
+if [ -n "$NET_GW" ]; then
+    ip route del default
+    ip route add default via $NET_GW
+fi
 
 exec supervisord -c /app/supervisord.conf

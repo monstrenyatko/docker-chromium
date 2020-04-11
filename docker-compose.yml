@@ -9,7 +9,6 @@ services:
       - LOG_LEVEL=info
       - DISPLAY_WIDTH=1600
       - DISPLAY_HEIGHT=968
-      - CHROMIUM_PARAMS=--incognito
     volumes:
       - chromium-data:/data:rw
     ports:
