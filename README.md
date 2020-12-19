@@ -84,9 +84,9 @@ Build own image
     cd <path to sources>
     DOCKER_BUILDKIT=1 docker build --tag <tag name> .
   ```
-* `arm` target platform:
+* `arm64` target platform:
 
   ```sh
     cd <path to sources>
-    DOCKER_BUILDKIT=1 docker build --platform=linux/arm --tag <tag name> .
+    DOCKER_BUILDKIT=1 docker build --platform=linux/arm64 --tag <tag name> .
   ```

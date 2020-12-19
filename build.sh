@@ -15,4 +15,4 @@ echo PARAMS: "${build_params}"
 # Exit on error
 set -e
 
-docker buildx build --progress plain --platform linux/arm,linux/arm64,linux/amd64 --tag ${build_tag} ${build_params} .
+docker buildx build --progress plain --platform linux/arm64,linux/amd64 --tag ${build_tag} ${build_params} .
