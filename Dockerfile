@@ -23,7 +23,7 @@ RUN buildDeps='make imagemagick';SHELL=/bin/bash; \
     apk update && \
     apk add $buildDeps && \
     cd /usr/share/novnc/app/images/icons/ && \
-    make && \
+    make --always-make && \
     rm /bin/sh && \
     mv /bin/sh.bkp /bin/sh && \
     # clean-up
