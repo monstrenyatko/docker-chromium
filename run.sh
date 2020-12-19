@@ -63,7 +63,7 @@ chown -R $APP_USERNAME $APP_USERHOME
 export HOME=$APP_USERHOME
 
 if [ -n "$NET_GW" ]; then
-    ip route del default
+    ip route del default || true
     ip route add default via $NET_GW
 fi
 
