@@ -1,4 +1,4 @@
-FROM alpine:3
+FROM monstrenyatko/alpine
 
 LABEL maintainer="Oleg Kovalenko <monstrenyatko@gmail.com>"
 
@@ -31,11 +31,13 @@ RUN buildDeps='make imagemagick';SHELL=/bin/bash; \
     rm -rf /root/.cache && mkdir -p /root/.cache && \
     rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/cache/distfiles/*
 
-ENV SYS_USERNAME="daemon" \
+ENV APP_NAME="chromium-app" \
+    SYS_USERNAME="daemon" \
     SYS_GROUPNAME="daemon" \
     APP_USERNAME="chromium" \
     APP_GROUPNAME="chromium" \
     APP_USERHOME="/data"
+
 RUN addgroup $APP_GROUPNAME && \
     adduser -D -h $APP_USERHOME -G $APP_GROUPNAME $APP_USERNAME
 
@@ -53,7 +55,11 @@ ENV LANG=en_US.UTF-8 \
 
 COPY conf.d /app/conf.d
 COPY run.sh supervisord.conf /app/
+RUN chown -R root:root /app
+RUN chmod -R 0744 /app
+RUN chmod 0755 /app/run.sh
 
 VOLUME ["/data"]
 
-CMD ["/app/run.sh"]
+ENTRYPOINT ["/app/run.sh"]
+CMD ["chromium-app"]
