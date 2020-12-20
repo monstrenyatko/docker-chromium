@@ -1,8 +1,7 @@
 Chromium browser Docker image
 =============================
 
-[![Build Status](https://travis-ci.org/monstrenyatko/docker-chromium.svg?branch=master)](https://travis-ci.org/monstrenyatko/docker-chromium)
-
+[![](https://github.com/monstrenyatko/docker-chromium/workflows/ci/badge.svg?branch=master)](https://github.com/monstrenyatko/docker-chromium/actions?query=workflow%3Aci)
 
 About
 =====
