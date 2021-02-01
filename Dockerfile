@@ -3,8 +3,6 @@ FROM monstrenyatko/alpine
 LABEL maintainer="Oleg Kovalenko <monstrenyatko@gmail.com>"
 
 RUN sed -i -e 's/v[[:digit:]]\..*\//edge\//g' /etc/apk/repositories && \
-    # upgrade to edge
-    apk update && apk upgrade && \
     echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories && \
     apk add --no-cache bash shadow supervisor fluxbox x11vnc xvfb novnc ttf-freefont chromium && \
     # open novnc by default
