@@ -14,7 +14,7 @@ update_user_uid $SYS_USERNAME $SYS_UID
 update_user_gid $APP_USERNAME $APP_GROUPNAME $APP_GID
 update_user_uid $APP_USERNAME $APP_UID
 
-chown -R $APP_USERNAME $APP_USERHOME
+chown $APP_USERNAME $APP_USERHOME
 
 export HOME=$APP_USERHOME
 
