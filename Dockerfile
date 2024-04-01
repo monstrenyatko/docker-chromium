@@ -2,9 +2,8 @@ FROM monstrenyatko/alpine:2024-03-31
 
 LABEL maintainer="Oleg Kovalenko <monstrenyatko@gmail.com>"
 
-RUN sed -i -e 's/v[[:digit:]]\..*\//edge\//g' /etc/apk/repositories && \
-    echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories && \
-    apk add --no-cache bash shadow supervisor fluxbox x11vnc xvfb novnc ttf-freefont chromium && \
+RUN apk update && \
+    apk add bash shadow supervisor fluxbox x11vnc xvfb novnc chromium && \
     # open novnc by default
     ln -s /usr/share/novnc/vnc.html /usr/share/novnc/index.html && \
     # clean-up
@@ -14,7 +13,7 @@ RUN sed -i -e 's/v[[:digit:]]\..*\//edge\//g' /etc/apk/repositories && \
 # replace favicon
 COPY icon.svg /usr/share/novnc/app/images/icons/novnc-icon-sm.svg
 COPY icon.svg /usr/share/novnc/app/images/icons/novnc-icon.svg
-RUN buildDeps='make imagemagick';SHELL=/bin/bash; \
+RUN buildDeps='make imagemagick rsvg-convert';SHELL=/bin/bash; \
     # novnc makefile syntax requires bash => make bash temporary the default shell
     mv /bin/sh /bin/sh.bkp && \
     ln -s /bin/bash /bin/sh && \
