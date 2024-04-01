@@ -1,7 +1,7 @@
 Chromium browser Docker image
 =============================
 
-[![](https://github.com/monstrenyatko/docker-chromium/workflows/ci/badge.svg?branch=master)](https://github.com/monstrenyatko/docker-chromium/actions?query=workflow%3Aci)
+[![docker](https://github.com/monstrenyatko/docker-chromium/actions/workflows/docker.yml/badge.svg)](https://github.com/monstrenyatko/docker-chromium/actions/workflows/docker.yml)
 
 About
 =====
@@ -77,15 +77,6 @@ Container can be configured using environment variables:
 Build own image
 ===============
 
-* `default` target platform:
-
-  ```sh
-    cd <path to sources>
-    DOCKER_BUILDKIT=1 docker build --tag <tag name> .
-  ```
-* `arm64` target platform:
-
-  ```sh
-    cd <path to sources>
-    DOCKER_BUILDKIT=1 docker build --platform=linux/arm64 --tag <tag name> .
-  ```
+```sh
+./build.sh <tag name>
+```
